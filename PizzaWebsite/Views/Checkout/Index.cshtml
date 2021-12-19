@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PizzaWebsite.Models.Pizza>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkout</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+        </tr>
+    }
+</table>
+<h2>Total: @ViewBag.Total</h2>
+@if (@ViewBag.Total != 0)
+{
+    @Html.ActionLink("Confirm", "Confirm")
+}
+@if (@ViewBag.Total == 0)
+{
+    @Html.ActionLink("Back", "Back")
+}
